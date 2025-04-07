@@ -1,10 +1,9 @@
-#include <stdio.h>
+
 
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 
-int main() {
     // Nível Novato - Posicionamento dos Navios
     // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
@@ -20,21 +19,46 @@ int main() {
     // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
     // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
 
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
+    #include <stdio.h>
 
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
+#define TAMANHO 10 // Definição do tamanho do tabuleiro
+#define TAM_NAVIO 3 // Definição do tamanho dos navios
+
+int main() {
+    int tabuleiro[TAMANHO][TAMANHO] = {0}; 
+
+    // Coordenadas para os navios
+    int navioHorizontalLinha = 2, navioHorizontalColuna = 4; // Início do navio horizontal
+    int navioVerticalLinha = 6, navioVerticalColuna = 7;     // Início do navio vertical
+
+    // posicionamento do navio horizontal 
+    if (navioHorizontalColuna + TAM_NAVIO <= TAMANHO) {
+        for (int i = 0; i < TAM_NAVIO; i++) {
+            tabuleiro[navioHorizontalLinha][navioHorizontalColuna + i] = 3; // Marca o navio na matriz
+        }
+    } else {
+        printf("Erro: O navio horizontal está fora dos limites do tabuleiro!\n");
+        return 1;
+    }
+
+    //posicionamento do navio vertical 
+    if (navioVerticalLinha + TAM_NAVIO <= TAMANHO) {
+        for (int i = 0; i < TAM_NAVIO; i++) {
+            tabuleiro[navioVerticalLinha + i][navioVerticalColuna] = 3; // Marca o navio na matriz
+        }
+    } else {
+        printf("Erro: O navio vertical está fora dos limites do tabuleiro!\n");
+        return 1;
+    }
+
+    // Exibição do tabuleiro 
+    printf("Tabuleiro do Batalha Naval:\n");
+    for (int i = 0; i < TAMANHO; i++) {
+        for (int j = 0; j < TAMANHO; j++) {
+            printf("%d ", tabuleiro[i][j]); // Imprime cada posição da matriz
+        }
+        printf("\n"); // Nova linha do tabuleiro
+    }
 
     return 0;
 }
